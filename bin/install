@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+plugin_dir="$(dirname "$(dirname "${BASH_SOURCE[0]}")")"
+# shellcheck source=/dev/null
+source "$plugin_dir/lib/utils.bash"
+
+[ "$ASDF_INSTALL_TYPE" = "version" ] || fail "release installs only"
+
+mkdir -p "$ASDF_INSTALL_PATH/bin"
+install -m 0755 "$ASDF_DOWNLOAD_PATH/outagedeck" "$ASDF_INSTALL_PATH/bin/outagedeck" || {
+	rm -f "$ASDF_INSTALL_PATH/bin/outagedeck"
+	fail "could not install outagedeck $ASDF_INSTALL_VERSION"
+}
+
+printf '%s %s installation was successful!\n' "$TOOL_NAME" "$ASDF_INSTALL_VERSION"

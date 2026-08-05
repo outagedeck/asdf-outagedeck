@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+plugin_dir="$(dirname "$(dirname "${BASH_SOURCE[0]}")")"
+# shellcheck source=/dev/null
+source "$plugin_dir/lib/utils.bash"
+
+list_all_versions | sort_versions | tail -n 1
