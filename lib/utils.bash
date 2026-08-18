@@ -69,7 +69,7 @@ download_release() {
 	curl "${curl_opts[@]}" --output "$checksum_file" "$base_url/checksums.txt" ||
 		fail "could not download $base_url/checksums.txt"
 
-	expected="$(awk -v archive="$archive" '$2 == "dist/" archive {print $1}' "$checksum_file")"
+	expected="$(awk -v archive="$archive" '$2 == archive || $2 == "dist/" archive {print $1}' "$checksum_file")"
 	[ -n "$expected" ] || fail "checksum manifest has no entry for $archive"
 	actual="$(sha256_file "$destination")"
 	[ "$actual" = "$expected" ] || fail "checksum mismatch for $archive"
