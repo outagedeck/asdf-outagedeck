@@ -5,7 +5,7 @@
 
 An [asdf](https://asdf-vm.com/) plugin for installing the
 [OutageDeck CLI](https://outagedeck.com?utm_source=github&utm_medium=repository&utm_campaign=asdf_plugin),
-which checks live cloud and SaaS status from official vendor feeds.
+which checks status published through official cloud and SaaS vendor feeds.
 
 ## Install
 
